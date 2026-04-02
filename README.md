@@ -1,16 +1,50 @@
-# React + Vite
+# Todo List App 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://developer.mozilla.org/)
 
-Currently, two official plugins are available:
+## 📖 Project Description
+A Todo application built using React and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📍 Live Demo
+*(Coming soon)*
 
-## React Compiler
+## 📖 Table of Contents
+* [📖 Project Description](#-project-description)
+* [✨ Features & Architecture](#-features--architecture)
+* [📂 Folder Structure](#-folder-structure)
+* [🚀 Installation Instructions](#-installation-instructions)
+* [💻 How to run the development server](#how-to-run-the-development-server)
+* [🤝 How to Contribute](#-how-to-contribute)
+* [✍️ Author](#️-author)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features & Architecture
+*(Coming soon)*
 
-## Expanding the ESLint configuration
+## 📂 Folder Structure
+*(Coming soon)*
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Installation Instructions
+
+To get this project up and running on your local machine, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/waleedtarbosh/todo-list.git](https://github.com/waleedtarbosh/todo-list.git)
+
+
+## How to run the development server
+To start the local Vite development server, run the following command in your terminal:
+
+```bash
+npm run dev
+
+## 🤝 How to Contribute
+*(Coming soon)*
+
+## ✍️ Author
+
+* **Waleed Tarbosh** - *Project Creator*
