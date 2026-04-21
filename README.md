@@ -41,7 +41,7 @@ To start the local Vite development server, run the following command in your te
 
 ```bash
 npm run dev
-
+```
 ## 🤝 How to Contribute
 *(Coming soon)*
 
