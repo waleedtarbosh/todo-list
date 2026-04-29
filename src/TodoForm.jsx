@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
 function TodoForm({ onAddTodo }) {
-  const inputRef = useRef();
+  const inputRef = useRef(null);
 
   const handleAddTodo = (event) => {
     event.preventDefault(); 
