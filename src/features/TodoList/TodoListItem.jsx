@@ -1,6 +1,6 @@
-import TextInputWithLabel from '../../shared/TextInputWithLabel';
-import { isValidTodoTitle } from '../../utils/todoValidation';
-import { useEditableTitle } from '../../hooks/useEditableTitle';
+import TextInputWithLabel from "../../shared/TextInputWithLabel";
+import { isValidTodoTitle } from "../../utils/todoValidation";
+import { useEditableTitle } from "../../hooks/useEditableTitle";
 
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const {
@@ -9,13 +9,13 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     startEditing,
     cancelEdit,
     updateTitle,
-    finishEdit
+    finishEdit,
   } = useEditableTitle(todo.title);
 
   const handleUpdate = (event) => {
     if (!isEditing) return;
     event.preventDefault();
-    
+
     const finalTitle = finishEdit();
     onUpdateTodo({ ...todo, title: finalTitle });
   };
@@ -25,14 +25,13 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
       <form onSubmit={handleUpdate}>
         {isEditing ? (
           <>
-            <TextInputWithLabel 
-              value={workingTitle} 
+            <TextInputWithLabel
+              elementId={`editTodo${todo.id}`}
+              labelText="Todo"
+              value={workingTitle}
               onChange={(e) => updateTitle(e.target.value)}
             />
-            <button 
-              type="submit" 
-              disabled={!isValidTodoTitle(workingTitle)}
-            >
+            <button type="submit" disabled={!isValidTodoTitle(workingTitle)}>
               Update
             </button>
             <button type="button" onClick={cancelEdit}>
@@ -49,7 +48,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
                 onChange={() => onCompleteTodo(todo.id)}
               />
             </label>
-            <span onClick={startEditing} style={{ cursor: 'pointer' }}>
+            <span onClick={startEditing} style={{ cursor: "pointer" }}>
               {todo.title}
             </span>
           </>
