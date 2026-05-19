@@ -94,7 +94,7 @@ export default function TodosPage({ token }) {
         credentials: 'include',
         body: JSON.stringify({ 
           isCompleted: true, 
-          createdAt: originalTodo.createdAt 
+          title: originalTodo.title,
         })
       });
 
@@ -125,7 +125,6 @@ export default function TodosPage({ token }) {
         body: JSON.stringify({
           title: editedTodo.title,
           isCompleted: editedTodo.isCompleted,
-          createdAt: editedTodo.createdAt
         })
       });
 
