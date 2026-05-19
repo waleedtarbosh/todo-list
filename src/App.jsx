@@ -14,7 +14,12 @@ export default function App() {
       
       <main>
         {token ? (
-          <TodosPage token={token} />
+          <div>
+            <p style={{ textAlign: 'center', color: 'green', margin: '10px 0' }}>
+              Logged in as: {email}
+            </p>
+            <TodosPage token={token} />
+          </div>
         ) : (
           <Logon onSetEmail={setEmail} onSetToken={setToken} />
         )}
