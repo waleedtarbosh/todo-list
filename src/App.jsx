@@ -1,45 +1,11 @@
-import "./App.css";
-import { useState } from 'react';
-import TodoHeader from "./features/TodoHeader.jsx";
-import TodoForm from './features/TodoForm';
-import TodoList from './features/TodoList/TodoList';
+import Header from './shared/Header';
+import TodosPage from './features/Todos/TodosPage';
 
-function App() {
-  const [todoList, setTodoList] = useState([]);
-
-  function addTodo(todoTitle) {
-    const newTodo = {
-      id: Date.now(),
-      title: todoTitle,
-      isCompleted: false
-    };
-    
-    setTodoList(previous => [newTodo, ...previous]);
-  }
-
-  function completeTodo(id) {
-    setTodoList(previous => 
-      previous.map(todo => 
-        todo.id === id ? { ...todo, isCompleted: true } : todo
-      )
-    );
-  }
-const updateTodo = (editedTodo) => {
-    const updatedTodos = todoList.map((todo) => {
-      if (todo.id === editedTodo.id) {
-        return { ...editedTodo };
-      }
-      return todo;
-    });
-    setTodoList(updatedTodos);
-  };
+export default function App() {
   return (
-    <div>
-      <TodoHeader />
-      <TodoForm onAddTodo={addTodo} />
-      <TodoList todoList={todoList} onCompleteTodo={completeTodo} onUpdateTodo={updateTodo} />
-    </div>
+    <>
+      <Header />
+      <TodosPage />
+    </>
   );
 }
-
-export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoListItem from './TodoListItem.jsx';
+import TodoListItem from './TodoListItem';
 
 function TodoList({ todoList, onCompleteTodo, onUpdateTodo }) {
   
