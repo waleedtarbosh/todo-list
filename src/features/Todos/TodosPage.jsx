@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from 'react';
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList/TodoList";
 import SortBy from "../../shared/SortBy";
@@ -12,10 +12,15 @@ export default function TodosPage({ token }) {
   const [sortDirection, setSortDirection] = useState("desc");
   const [filterTerm, setFilterTerm] = useState("");
   const debouncedFilterTerm = useDebounce(filterTerm, 300);
+  const [dataVersion, setDataVersion] = useState(0);
 
   const handleFilterChange = (newTerm) => {
     setFilterTerm(newTerm);
   };
+  const invalidateCache = useCallback(() => {
+    setDataVersion(prev => prev + 1);
+    console.log("Invalidating memo cache after todo mutation");
+  }, []);
   useEffect(() => {
     if (!token) return;
 
@@ -87,6 +92,7 @@ export default function TodosPage({ token }) {
       setTodoList((previous) =>
         previous.map((todo) => (todo.id === tempTodo.id ? realTodo : todo)),
       );
+      invalidateCache();
     } catch (err) {
       setTodoList((previous) =>
         previous.filter((todo) => todo.id !== tempTodo.id),
@@ -120,6 +126,7 @@ export default function TodosPage({ token }) {
       });
 
       if (!response.ok) throw new Error("Failed to mark task as completed");
+      invalidateCache();
     } catch (err) {
       setTodoList((previous) =>
         previous.map((todo) => (todo.id === id ? originalTodo : todo)),
@@ -152,6 +159,7 @@ export default function TodosPage({ token }) {
       });
 
       if (!response.ok) throw new Error("Failed to update task");
+      invalidateCache();
     } catch (err) {
       setTodoList((previous) =>
         previous.map((todo) =>
@@ -196,6 +204,7 @@ export default function TodosPage({ token }) {
         todoList={todoList}
         onCompleteTodo={completeTodo}
         onUpdateTodo={updateTodo}
+        dataVersion={dataVersion}
       />
     </div>
   );
