@@ -1,35 +1,43 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }
 
 export function AuthProvider({ children }) {
-  const [email, setEmail] = useState('');
-  const [token, setToken] = useState('');
+  const [email, setEmail] = useState(
+    () => localStorage.getItem("authEmail") || "",
+  );
+  const [token, setToken] = useState(
+    () => localStorage.getItem("authToken") || "",
+  );
 
   const login = async (userEmail, password) => {
     try {
       const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail, password }),
-        credentials: 'include',
+        credentials: "include",
       };
 
-      const res = await fetch('/api/users/logon', options);
+      const res = await fetch("/api/users/logon", options);
       const data = await res.json();
 
       if (res.status === 200 && data.name && data.csrfToken) {
         setEmail(data.name);
         setToken(data.csrfToken);
+
+        localStorage.setItem("authEmail", data.name);
+        localStorage.setItem("authToken", data.csrfToken);
+
         return { success: true };
       } else {
         return {
@@ -38,10 +46,10 @@ export function AuthProvider({ children }) {
         };
       }
     } catch (error) {
-      console.error('Login error:', error); 
+      console.error("Login error:", error);
       return {
         success: false,
-        error: 'Network error during login',
+        error: "Network error during login",
       };
     }
   };
@@ -50,21 +58,25 @@ export function AuthProvider({ children }) {
     if (token) {
       try {
         const options = {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': token,
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": token,
           },
-          credentials: 'include',
+          credentials: "include",
         };
-        await fetch('/api/users/logoff', options);
+        await fetch("/api/users/logoff", options);
       } catch (error) {
-        console.error('Logout error:', error);
+        console.error("Logout error:", error);
       }
     }
-    
-    setEmail('');
-    setToken('');
+
+    setEmail("");
+    setToken("");
+
+    localStorage.removeItem("authEmail");
+    localStorage.removeItem("authToken");
+
     return { success: true };
   };
 
@@ -76,9 +88,5 @@ export function AuthProvider({ children }) {
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
