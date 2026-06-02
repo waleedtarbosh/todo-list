@@ -38,6 +38,7 @@ export function AuthProvider({ children }) {
         };
       }
     } catch (error) {
+      console.error('Login error:', error); 
       return {
         success: false,
         error: 'Network error during login',
