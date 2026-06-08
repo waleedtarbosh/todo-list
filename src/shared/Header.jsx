@@ -1,16 +1,17 @@
+import Navigation from './Navigation';
+import Logoff from '../features/Logoff';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Header() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
-    <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 20px' }}>
+    <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 20px', borderBottom: '1px solid #ccc' }}>
       <h1>Todo List</h1>
-        {isAuthenticated && (
-        <button onClick={logout} style={{ cursor: 'pointer', padding: '5px 15px' }}>
-          Logout
-        </button>
-      )}
+      
+      <Navigation />
+
+      {isAuthenticated && <Logoff />}
     </header>
   );
 }
