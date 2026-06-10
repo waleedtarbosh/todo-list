@@ -78,6 +78,12 @@ export default function ProfilePage() {
             <li>📝 <strong>Total Todos:</strong> {stats.total}</li>
             <li>✅ <strong>Completed:</strong> <span style={{ color: 'green' }}>{stats.completed}</span></li>
             <li>⏳ <strong>Active:</strong> <span style={{ color: 'orange' }}>{stats.active}</span></li>
+            
+            {stats.total > 0 && (
+              <li>📈 <strong>Completion Rate:</strong> <span style={{ color: '#0d6efd', fontWeight: 'bold' }}>
+                {(stats.completed / stats.total * 100).toFixed(0)}%
+              </span></li>
+            )}
           </ul>
         )}
       </div>
