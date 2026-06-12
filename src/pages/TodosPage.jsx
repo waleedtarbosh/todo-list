@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router";
 import TodoForm from "../features/Todos/TodoForm";
 import TodoList from "../features/Todos/TodoList/TodoList";
@@ -31,6 +31,12 @@ export default function TodosPage() {
   const handleFilterChange = (newTerm) => {
     dispatch({ type: TODO_ACTIONS.SET_FILTER, payload: { filterTerm: newTerm } });
   };
+
+  // Count active todos
+  const activeTodoCount = useMemo(
+    () => todoList.filter((t) => !t.isCompleted).length,
+    [todoList]
+  );
 
   useEffect(() => {
     if (!token) return;
@@ -174,72 +180,127 @@ export default function TodosPage() {
   }
 
   return (
-    <div>
-      {error && (
-        <div
-          style={{
-            color: "red",
-            margin: "10px 0",
-            padding: "10px",
-            border: "1px solid red",
-          }}
-        >
-          Error: {error}
-          <button onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_ERROR })} style={{ marginLeft: "15px" }}>
-            Clear Error
-          </button>
-        </div>
-      )}
+    <div className="min-h-screen font-body antialiased overflow-x-hidden bg-surface-container-lowest bg-[radial-gradient(circle_at_50%_0%,rgba(255,45,85,0.15)_0%,transparent_70%)]">
+      {/* Ambient Glow Layers */}
+      <div className="fixed inset-0 pointer-events-none z-[-1]">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary-container/5 rounded-full blur-[120px]" />
+      </div>
 
-      {filterError && (
-        <div
-          style={{
-            color: "orange",
-            margin: "10px 0",
-            padding: "10px",
-            border: "1px solid orange",
-          }}
-        >
-          <p>{filterError}</p>
-          <button
-            onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_FILTER_ERROR })}
-            style={{ marginRight: "10px" }}
-          >
-            Clear Filter Error
-          </button>
-          <button onClick={() => dispatch({ type: TODO_ACTIONS.RESET_FILTERS })}>
-            Reset Filters
-          </button>
-        </div>
-      )}
+      {/* Main Canvas */}
+      <main className="pt-[100px] pb-12 px-margin-mobile md:px-margin-desktop min-h-screen flex flex-col items-center">
+        <div className="w-full max-w-[800px] flex flex-col gap-gutter">
+          {/* Page Header */}
+          <div className="flex flex-col gap-2 mb-4 animate-fade-up">
+            <h1 className="font-display text-[48px] leading-[56px] tracking-[-0.02em] font-bold text-on-surface neon-text-glow">
+              My Todos
+            </h1>
+            <p className="text-[18px] leading-[28px] text-on-surface-variant">
+              Focus your energy. Complete the ritual.
+            </p>
+          </div>
 
-      {isTodoListLoading && <p>Loading your todos... ⏳</p>}
-      <SortBy
-        sortBy={sortBy}
-        sortDirection={sortDirection}
-        onSortByChange={(newSortBy) => 
-          dispatch({ type: TODO_ACTIONS.SET_SORT, payload: { sortBy: newSortBy, sortDirection } })
-        }
-        onSortDirectionChange={(newSortDirection) => 
-          dispatch({ type: TODO_ACTIONS.SET_SORT, payload: { sortBy, sortDirection: newSortDirection } })
-        }
-      />
-      
-      <StatusFilter />
-      
-      <FilterInput
-        filterTerm={filterTerm}
-        onFilterChange={handleFilterChange}
-      />
-      <TodoForm onAddTodo={addTodo} />
-      
-      <TodoList
-        todoList={todoList}
-        onCompleteTodo={completeTodo}
-        onUpdateTodo={updateTodo}
-        dataVersion={dataVersion}
-        statusFilter={statusFilter}
-      />
+          {/* Error Messages */}
+          {error && (
+            <div className="glass-panel rounded-lg p-4 border-error/50 flex items-center justify-between animate-fade-up">
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-error" style={{ fontSize: '20px' }}>error</span>
+                <span className="text-error text-[14px]">{error}</span>
+              </div>
+              <button
+                onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_ERROR })}
+                className="text-on-surface-variant hover:text-primary transition-colors text-[14px] tracking-[0.05em] font-semibold uppercase"
+              >
+                Dismiss
+              </button>
+            </div>
+          )}
+
+          {filterError && (
+            <div className="glass-panel rounded-lg p-4 border-orange-500/50 flex items-center justify-between animate-fade-up">
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-orange-400" style={{ fontSize: '20px' }}>warning</span>
+                <span className="text-orange-400 text-[14px]">{filterError}</span>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_FILTER_ERROR })}
+                  className="text-on-surface-variant hover:text-primary transition-colors text-[14px] tracking-[0.05em] font-semibold uppercase"
+                >
+                  Dismiss
+                </button>
+                <button
+                  onClick={() => dispatch({ type: TODO_ACTIONS.RESET_FILTERS })}
+                  className="text-primary hover:text-primary/80 transition-colors text-[14px] tracking-[0.05em] font-semibold uppercase"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Action Area (Search & Add) */}
+          <div className="flex flex-col md:flex-row gap-4 mb-4 animate-fade-up-delay-1">
+            {/* Search */}
+            <FilterInput
+              filterTerm={filterTerm}
+              onFilterChange={handleFilterChange}
+            />
+            {/* Add Task */}
+            <TodoForm onAddTodo={addTodo} />
+          </div>
+
+          {/* Sort & Filter Controls */}
+          <div className="flex flex-wrap items-center gap-4 mb-4 animate-fade-up-delay-1">
+            <SortBy
+              sortBy={sortBy}
+              sortDirection={sortDirection}
+              onSortByChange={(newSortBy) =>
+                dispatch({ type: TODO_ACTIONS.SET_SORT, payload: { sortBy: newSortBy, sortDirection } })
+              }
+              onSortDirectionChange={(newSortDirection) =>
+                dispatch({ type: TODO_ACTIONS.SET_SORT, payload: { sortBy, sortDirection: newSortDirection } })
+              }
+            />
+            <StatusFilter />
+          </div>
+
+          {/* Loading State */}
+          {isTodoListLoading && (
+            <div className="flex items-center justify-center py-12 gap-3">
+              <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+              <span className="text-[14px] tracking-[0.05em] font-semibold text-primary uppercase">
+                Loading rituals...
+              </span>
+            </div>
+          )}
+
+          {/* Task List */}
+          {!isTodoListLoading && (
+            <div className="animate-fade-up-delay-2">
+              <TodoList
+                todoList={todoList}
+                onCompleteTodo={completeTodo}
+                onUpdateTodo={updateTodo}
+                dataVersion={dataVersion}
+                statusFilter={statusFilter}
+              />
+            </div>
+          )}
+
+          {/* Status Footer */}
+          {!isTodoListLoading && todoList.length > 0 && (
+            <div className="mt-12 text-center flex flex-col items-center justify-center gap-2 animate-fade-up-delay-3">
+              <div className="w-12 h-1 bg-primary rounded-full glow-sm drop-shadow-[0_0_10px_#ff2d55] mb-4" />
+              <p className="text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-primary uppercase neon-text-glow">
+                {activeTodoCount === 0
+                  ? 'All rituals complete. Well done.'
+                  : `You have ${activeTodoCount} active task${activeTodoCount !== 1 ? 's' : ''} remaining. Keep it up!`}
+              </p>
+            </div>
+          )}
+        </div>
+      </main>
     </div>
   );
 }
