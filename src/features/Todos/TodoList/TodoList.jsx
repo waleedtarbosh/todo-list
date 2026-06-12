@@ -34,32 +34,46 @@ function TodoList({
   const getEmptyMessage = () => {
     switch (statusFilter) {
       case 'completed':
-        return 'No completed todos yet. Complete some tasks to see them here.';
+        return 'No completed rituals yet. Complete some tasks to see them here.';
       case 'active':
-        return 'No active todos. Add a todo above to get started.';
+        return 'No active rituals. Initiate a new ritual above.';
       case 'all':
       default:
-        return 'Add todo above to get started.';
+        return 'No rituals found. Initiate one above to begin.';
     }
   };
 
   return (
-    filteredTodoList.todos.length === 0 ? (
-      <p style={{ textAlign: 'center', marginTop: '20px', color: '#666' }}>
-        {getEmptyMessage()}
-      </p>
-    ) : (
-      <ul>
-        {filteredTodoList.todos.map((todo) => (
-          <TodoListItem 
-            key={todo.id} 
-            todo={todo} 
-            onCompleteTodo={onCompleteTodo}
-            onUpdateTodo={onUpdateTodo}
-          />
-        ))}
-      </ul>
-    )
+    <div className="w-full mt-8 animate-fade-up-delay-1">
+      {filteredTodoList.todos.length === 0 ? (
+        <div className="glass-surface rounded-xl p-12 flex flex-col items-center justify-center text-center border border-surface-variant border-dashed">
+          <span
+            className="material-symbols-outlined text-surface-variant mb-4"
+            style={{ fontSize: '48px', fontVariationSettings: "'wght' 200" }}
+          >
+            {statusFilter === 'completed' ? 'task_alt' : 'auto_awesome'}
+          </span>
+          <p className="text-[16px] leading-[24px] text-on-surface-variant font-body tracking-wide">
+            {getEmptyMessage()}
+          </p>
+        </div>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {filteredTodoList.todos.map((todo, index) => (
+            <React.Fragment key={todo.id}>
+              <TodoListItem
+                todo={todo}
+                onCompleteTodo={onCompleteTodo}
+                onUpdateTodo={onUpdateTodo}
+              />
+              {index < filteredTodoList.todos.length - 1 && (
+                <div className="list-divider my-2 opacity-50" />
+              )}
+            </React.Fragment>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
