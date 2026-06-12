@@ -27,7 +27,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
           <>
             <TextInputWithLabel 
               elementId={`editTodo${todo.id}`}
-              labelText="Todo"
+              aria-label="Todo"
               value={workingTitle} 
               onChange={(e) => updateTitle(e.target.value)} 
             />
