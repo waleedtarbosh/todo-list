@@ -24,14 +24,19 @@ export default function Logoff() {
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-      {error && <span style={{ color: 'red', fontSize: '0.8rem' }}>{error}</span>}
-      <button 
-        onClick={handleLogoff} 
-        disabled={isLoggingOff} 
-        style={{ cursor: 'pointer', padding: '5px 15px' }}
+    <div className="hidden md:flex items-center gap-3">
+      {error && (
+        <span className="text-error text-xs">{error}</span>
+      )}
+      <button
+        onClick={handleLogoff}
+        disabled={isLoggingOff}
+        className="flex items-center gap-2 font-body text-[14px] leading-[20px] tracking-[0.05em] font-semibold uppercase text-on-surface-variant hover:text-primary transition-colors active:scale-95 duration-300 disabled:opacity-50"
       >
-        {isLoggingOff ? 'Logging off...' : 'Logout'}
+        <span>{isLoggingOff ? 'Logging off...' : 'Logout'}</span>
+        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
+          logout
+        </span>
       </button>
     </div>
   );
