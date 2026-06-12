@@ -1,5 +1,7 @@
 @import "tailwindcss";
+
 /* ===== Neon Ritual Design System ===== */
+
 @theme {
   /* --- Colors --- */
   --color-neon-red: #ff2d55;
@@ -10,6 +12,7 @@
   --color-obsidian-deep: #050505;
   --color-glass-panel: rgba(18, 20, 20, 0.7);
   --color-glass-panel-strong: rgba(10, 10, 10, 0.6);
+
   --color-surface: #121414;
   --color-surface-dim: #121414;
   --color-surface-bright: #383939;
@@ -24,11 +27,13 @@
   --color-on-surface-variant: #e6bcbd;
   --color-outline: #ad8888;
   --color-outline-variant: #5d3f40;
+
   --color-background: #121414;
   --color-on-background: #e3e2e2;
   --color-inverse-surface: #e3e2e2;
   --color-inverse-on-surface: #303031;
   --color-inverse-primary: #be0036;
+
   --color-primary: #ffb3b5;
   --color-on-primary: #680019;
   --color-primary-container: #ff5167;
@@ -43,19 +48,23 @@
   --color-on-tertiary: #003826;
   --color-tertiary-container: #1fa478;
   --color-on-tertiary-container: #003121;
+
   --color-error: #ffb4ab;
   --color-on-error: #690005;
   --color-error-container: #93000a;
   --color-on-error-container: #ffdad6;
+
   /* --- Typography --- */
   --font-display: 'Sora', sans-serif;
   --font-body: 'Inter', sans-serif;
+
   /* --- Spacing --- */
   --spacing-base: 8px;
   --spacing-gutter: 24px;
   --spacing-margin-mobile: 16px;
   --spacing-margin-desktop: 64px;
   --spacing-container-max: 1200px;
+
   /* --- Border radius --- */
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
@@ -63,15 +72,18 @@
   --radius-xl: 2rem;
   --radius-2xl: 3rem;
   --radius-pill: 9999px;
+
   /* --- Shadows --- */
   --shadow-neon: 0 0 15px rgba(255, 45, 85, 0.5), inset 0 0 10px rgba(255, 45, 85, 0.2);
   --shadow-neon-sm: 0 0 8px rgba(255, 45, 85, 0.3);
   --shadow-neon-lg: 0 0 30px rgba(255, 45, 85, 0.6), 0 0 60px rgba(255, 45, 85, 0.2);
 }
+
 /* ===== Base Styles ===== */
 html {
   scroll-behavior: smooth;
 }
+
 body {
   background-color: var(--color-obsidian);
   color: var(--color-on-surface);
@@ -79,29 +91,36 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 /* ===== Utility Classes ===== */
+
 /* Neon text glow for display headings */
 .text-glow {
   text-shadow: 0 0 12px rgba(255, 45, 85, 0.4);
 }
+
 .text-glow-strong {
   text-shadow: 0 0 10px rgba(255, 45, 85, 0.8), 0 0 30px rgba(255, 45, 85, 0.3);
 }
+
 /* Neon icon glow for active states */
 .icon-glow {
   filter: drop-shadow(0 0 5px #ff2d55);
 }
+
 /* Light-leaking divider */
 .divider-neon {
   height: 1px;
   background: linear-gradient(to right, transparent, #ff2d55, transparent);
 }
+
 /* Glass surface */
 .glass-surface {
   background: rgba(10, 10, 10, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+
 /* Base layer ambient glow */
 .ambient-glow {
   background: radial-gradient(
@@ -110,6 +129,7 @@ body {
     transparent 70%
   );
 }
+
 /* Neon border hover transition for cards */
 .neon-card {
   border: 1px solid rgba(255, 45, 85, 0.2);
@@ -119,6 +139,7 @@ body {
   border-color: rgba(255, 45, 85, 1);
   box-shadow: 0 0 15px rgba(255, 45, 85, 0.5), inset 0 0 10px rgba(255, 45, 85, 0.2);
 }
+
 /* Input neon focus */
 .input-neon {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -128,6 +149,7 @@ body {
   box-shadow: 0 0 8px rgba(255, 45, 85, 0.3), inset 0 0 4px rgba(255, 45, 85, 0.1);
   outline: none;
 }
+
 /* Button neon pulse animation */
 @keyframes neon-pulse {
   0%, 100% {
@@ -137,9 +159,11 @@ body {
     box-shadow: 0 0 20px rgba(255, 45, 85, 0.7), 0 0 40px rgba(255, 45, 85, 0.3);
   }
 }
+
 .btn-neon-pulse:hover {
   animation: neon-pulse 2s ease-in-out infinite;
 }
+
 /* Smooth scroll-in animation */
 @keyframes fade-up {
   from {
@@ -151,21 +175,95 @@ body {
     transform: translateY(0);
   }
 }
+
 .animate-fade-up {
   animation: fade-up 0.6s ease-out forwards;
 }
+
 .animate-fade-up-delay-1 {
   animation: fade-up 0.6s ease-out 0.1s forwards;
   opacity: 0;
 }
+
 .animate-fade-up-delay-2 {
   animation: fade-up 0.6s ease-out 0.2s forwards;
   opacity: 0;
 }
+
 .animate-fade-up-delay-3 {
   animation: fade-up 0.6s ease-out 0.3s forwards;
   opacity: 0;
 }
+
+/* ===== Todos Page Utilities ===== */
+
+/* Glass panel with outline border */
+.glass-panel {
+  background-color: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-outline-variant);
+}
+
+/* Task card with neon hover */
+.task-card {
+  background-color: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(93, 63, 64, 0.2);
+  transition: all 0.3s ease;
+}
+.task-card:hover {
+  border-color: rgba(255, 179, 181, 1);
+  box-shadow: 0 0 15px rgba(255, 45, 85, 0.3);
+}
+
+/* Neon focus glow for input containers */
+.neon-border-focus {
+  transition: all 0.3s ease;
+}
+.neon-border-focus:focus-within {
+  border-color: var(--color-primary) !important;
+  box-shadow: inset 0 0 10px rgba(255, 45, 85, 0.2);
+}
+
+/* Small neon glow */
+.glow-sm {
+  box-shadow: 0 0 10px rgba(255, 45, 85, 0.5);
+}
+
+/* Neon text glow (smaller) */
+.neon-text-glow {
+  text-shadow: 0 0 8px rgba(255, 45, 85, 0.6);
+}
+
+/* Neon icon glow */
+.neon-icon-glow {
+  filter: drop-shadow(0 0 5px #ff2d55);
+}
+
+/* List divider — light-leaking gradient */
+.list-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.3;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-variant);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline-variant);
+}
+
 /* Profile page ritual card */
 .ritual-card {
   background-color: rgba(10, 10, 10, 0.6);
@@ -177,4 +275,65 @@ body {
 .ritual-card:hover {
   border-color: #ffb3b5;
   box-shadow: 0 0 15px rgba(255, 179, 181, 0.3);
+}
+
+/* ===== Todos Page Utilities ===== */
+/* Glass panel with outline border */
+.glass-panel {
+  background-color: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-outline-variant);
+}
+/* Task card with neon hover */
+.task-card {
+  background-color: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(93, 63, 64, 0.2);
+  transition: all 0.3s ease;
+}
+.task-card:hover {
+  border-color: rgba(255, 179, 181, 1);
+  box-shadow: 0 0 15px rgba(255, 45, 85, 0.3);
+}
+/* Neon focus glow for input containers */
+.neon-border-focus {
+  transition: all 0.3s ease;
+}
+.neon-border-focus:focus-within {
+  border-color: var(--color-primary) !important;
+  box-shadow: inset 0 0 10px rgba(255, 45, 85, 0.2);
+}
+/* Small neon glow */
+.glow-sm {
+  box-shadow: 0 0 10px rgba(255, 45, 85, 0.5);
+}
+/* Neon text glow (smaller) */
+.neon-text-glow {
+  text-shadow: 0 0 8px rgba(255, 45, 85, 0.6);
+}
+/* Neon icon glow */
+.neon-icon-glow {
+  filter: drop-shadow(0 0 5px #ff2d55);
+}
+/* List divider — light-leaking gradient */
+.list-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.3;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-variant);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline-variant);
 }
