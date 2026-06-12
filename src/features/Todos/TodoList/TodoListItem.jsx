@@ -22,33 +22,37 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
 
   if (isEditing) {
     return (
-      <li className="task-card rounded-lg p-6 bg-surface-container-lowest/60 block">
-        <form onSubmit={handleUpdate} className="flex items-center gap-4">
+      <li className="task-card rounded-lg p-4 md:p-6 bg-surface-container-lowest/60 block">
+        <form onSubmit={handleUpdate} className="flex flex-col gap-4 w-full">
           
-          <TextInputWithLabel
-            elementId={`editTodo${todo.id}`}
-            labelText="Edit Todo"
-            value={workingTitle}
-            onChange={(e) => updateTitle(e.target.value)}
-            className="flex-1 border border-primary/50 rounded-md px-4 py-2 font-display text-[24px] leading-[32px] font-semibold focus:border-primary focus:shadow-[inset_0_0_10px_rgba(255,45,85,0.2)] transition-all"
-            autoFocus
-          />
+          <div className="w-full">
+            <TextInputWithLabel
+              elementId={`editTodo${todo.id}`}
+              labelText="Edit Todo"
+              value={workingTitle}
+              onChange={(e) => updateTitle(e.target.value)}
+              className="w-full border border-primary/50 rounded-md px-4 py-2 font-display text-[18px] md:text-[24px] leading-normal font-semibold focus:border-primary focus:shadow-[inset_0_0_10px_rgba(255,45,85,0.2)] transition-all"
+              autoFocus
+            />
+          </div>
 
-          <button
-            type="button"
-            onClick={cancelEdit}
-            className="text-on-surface-variant hover:text-on-surface text-[14px] tracking-[0.05em] font-semibold uppercase transition-colors px-3 py-2"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handleUpdate}
-            disabled={!isValidTodoTitle(workingTitle)}
-            className="bg-primary/20 border border-primary text-primary text-[14px] tracking-[0.05em] font-semibold uppercase px-4 py-2 rounded-md hover:bg-primary/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            Update
-          </button>
+          <div className="flex justify-end items-center gap-3 w-full">
+            <button
+              type="button"
+              onClick={cancelEdit}
+              className="text-on-surface-variant hover:text-on-surface text-[12px] md:text-[14px] tracking-[0.05em] font-semibold uppercase transition-colors px-3 py-2"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleUpdate}
+              disabled={!isValidTodoTitle(workingTitle)}
+              className="bg-primary/20 border border-primary text-primary text-[12px] md:text-[14px] tracking-[0.05em] font-semibold uppercase px-4 py-2 rounded-md hover:bg-primary/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              Update
+            </button>
+          </div>
         </form>
       </li>
     );
@@ -85,7 +89,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
         <div className="flex flex-col">
           <span
             onClick={!todo.isCompleted ? startEditing : undefined}
-            className={`font-display text-[24px] leading-[32px] font-semibold transition-colors cursor-pointer ${
+            className={`font-display text-[18px] md:text-[24px] leading-normal font-semibold transition-colors cursor-pointer ${
               todo.isCompleted
                 ? 'text-on-surface-variant line-through cursor-default'
                 : 'text-on-surface group-hover:text-primary'
