@@ -37,29 +37,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col font-display overflow-x-hidden bg-obsidian">
-      {/* ===== Top Navigation ===== */}
-      <nav className="w-full flex items-center justify-between px-8 py-6 z-50 fixed top-0 left-0 bg-obsidian/50 backdrop-blur-md">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="text-3xl font-bold tracking-tight text-white text-glow-strong transition-all duration-300 group-hover:tracking-wide">
-            TaskRitual
-          </span>
-        </Link>
-        <div className="flex items-center gap-8 text-sm font-semibold tracking-wider">
-          <Link
-            to="/about"
-            className="text-gray-400 hover:text-white transition-colors duration-200"
-          >
-            About
-          </Link>
-          <Link
-            to="/login"
-            className="text-neon-red border-b-2 border-neon-red pb-1"
-          >
-            Login
-          </Link>
-        </div>
-      </nav>
-
       {/* ===== Main Content ===== */}
       <main className="flex-1 flex flex-col lg:flex-row min-h-screen pt-24 lg:pt-20">
         {/* --- Left Visual Section --- */}

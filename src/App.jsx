@@ -1,6 +1,5 @@
 import './App.css';
-import { Routes, Route, useLocation } from 'react-router';
-
+import { Routes, Route } from 'react-router';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
@@ -12,11 +11,9 @@ import RequireAuth from './components/RequireAuth';
 import Header from './shared/Header';
 
 function App() {
-  const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
   return (
     <>
-      {!isLoginPage && <Header />}
+      <Header />
       
       <Routes>
         <Route path="/" element={<HomePage />} />
