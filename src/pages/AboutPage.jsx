@@ -7,15 +7,15 @@ export default function AboutPage() {
       <div className="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,45,85,0.08)_0%,rgba(18,20,20,0)_70%)]" />
 
       {/* Main Canvas */}
-      <main className="flex-grow z-10 pt-24 pb-16 px-margin-mobile md:px-margin-desktop w-full max-w-[1200px] mx-auto flex flex-col gap-16">
+      <main className="flex-grow z-10 pt-24 pb-16 px-margin-mobile md:px-margin-desktop w-full max-w-[1200px] mx-auto flex flex-col gap-10 md:gap-16">
         {/* ===== Hero Section ===== */}
-        <section className="flex flex-col md:flex-row items-center gap-12 pt-8 animate-fade-up">
-          <div className="flex-1 flex flex-col gap-6 text-center md:text-left">
-            <h2 className="font-display text-[48px] leading-[56px] tracking-[-0.02em] font-bold text-on-background">
+        <section className="flex flex-col md:flex-row items-center gap-8 md:gap-12 pt-4 md:pt-8 animate-fade-up">
+          <div className="flex-1 flex flex-col gap-4 md:gap-6 text-center md:text-left">
+            <h2 className="font-display text-[32px] leading-[38px] md:text-[48px] md:leading-[56px] tracking-[-0.02em] font-bold text-on-background">
               The Ritual of{' '}
               <span className="text-primary icon-glow">Accomplishment</span>
             </h2>
-            <p className="text-[18px] leading-[28px] text-on-surface-variant max-w-2xl">
+              <p className="text-[15px] leading-[24px] md:text-[18px] md:leading-[28px] text-on-surface-variant max-w-2xl">
               TaskRitual elevates daily management into a profound,
               high-performance experience. Designed with obsessive precision, it
               merges the mysterious allure of nocturnal aesthetics with the
@@ -35,7 +35,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-50" />
             <img
               alt="A sleek, high-contrast workspace bathed in moody, nocturnal lighting"
-              className="w-full h-[400px] object-cover rounded-xl glass-surface border border-primary/30 relative z-10"
+              className="w-full h-[250px] md:h-[400px] object-cover rounded-xl glass-surface border border-primary/30 relative z-10"
               src={aboutHero}
             />
           </div>
@@ -46,12 +46,12 @@ export default function AboutPage() {
 
         {/* ===== Core Capabilities Section ===== */}
         <section className="flex flex-col gap-10 animate-fade-up-delay-1">
-          <h3 className="font-display text-[32px] leading-[40px] font-semibold text-center text-on-surface">
+          <h3 className="font-display text-[24px] leading-[32px] md:text-[32px] md:leading-[40px] font-semibold text-center text-on-surface">
             Core Capabilities
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Card 1: Secure Authentication */}
-            <div className="glass-surface p-8 rounded-xl neon-card flex flex-col items-center text-center gap-4 group">
+              <div className="glass-surface p-6 md:p-8 rounded-xl neon-card flex flex-col items-center text-center gap-4 group">
               <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
                 <span
                   className="material-symbols-outlined text-primary"
@@ -60,7 +60,7 @@ export default function AboutPage() {
                   lock
                 </span>
               </div>
-              <h4 className="font-display text-[24px] leading-[32px] font-semibold text-on-surface">
+              <h4 className="font-display text-[20px] leading-[28px] md:text-[24px] md:leading-[32px] font-semibold text-on-surface">
                 Secure Authentication
               </h4>
               <p className="text-[16px] leading-[24px] text-on-surface-variant">
