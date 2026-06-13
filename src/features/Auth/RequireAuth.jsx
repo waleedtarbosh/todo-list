@@ -14,7 +14,16 @@ export default function RequireAuth({ children }) {
   }, [isAuthenticated, navigate, location]);
 
   if (!isAuthenticated) {
-    return <p style={{ textAlign: 'center', marginTop: '20px' }}>Redirecting to login...</p>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-surface-container-lowest">
+        <div className="flex flex-col items-center gap-4 animate-fade-up">
+          <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin glow-sm" />
+          <p className="text-primary font-display text-[14px] font-semibold tracking-widest uppercase">
+            Redirecting to Login...
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return children;
