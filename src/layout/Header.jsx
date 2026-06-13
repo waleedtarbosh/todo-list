@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navigation from "./Navigation";
-import Logoff from "../features/Logoff";
+import Logoff from "../features/Auth/Logoff";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router";
 

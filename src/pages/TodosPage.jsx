@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 import TodoForm from "../features/Todos/TodoForm";
 import TodoList from "../features/Todos/TodoList/TodoList";
 import SortBy from "../shared/SortBy";
-import useDebounce from "../utils/useDebounce";
+import useDebounce from "../hooks/useDebounce";
 import FilterInput from "../shared/FilterInput";
 import StatusFilter from "../shared/StatusFilter";
 import { todoReducer, initialTodoState, TODO_ACTIONS } from "../reducers/todoReducer";

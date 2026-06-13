@@ -7,8 +7,8 @@ import TodosPage from './pages/TodosPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 
-import RequireAuth from './components/RequireAuth';
-import Header from './shared/Header';
+import RequireAuth from './features/Auth/RequireAuth';
+import Header from './layout/Header';
 
 function App() {
   return (
