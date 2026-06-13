@@ -6,23 +6,24 @@
 
 </div>
 
-
 ## 📖 Project Description
 
 **TaskRitual** is a modern, high-performance task management application designed to keep you organized in style. It features a beautiful custom "Neon Ritual" dark theme, smooth animations, and a highly responsive user interface.
 
 Beyond its clean design, the application is built with a focus on secure routing, robust state management, and scalable architecture. Developed using modern web technologies:
 
-* **React** (State Management & UI)
-* **Vite** (Fast Build Tool)
-* **JavaScript** (Application Logic)
-* **Tailwind CSS** (Utility-first Styling & Custom Theme)
-* **React Router** (Secure & Dynamic Navigation)
+- **React** (State Management & UI)
+- **Vite** (Fast Build Tool)
+- **JavaScript** (Application Logic)
+- **Tailwind CSS** (Utility-first Styling & Custom Theme)
+- **React Router** (Secure & Dynamic Navigation)
 
 ## 🌐 Live Demo ⚡
-*(Coming soon)*
+
+_(Coming soon)_
 
 ## 📸 Screenshots 🖼️
+
 <div align="center">
   <table>
     <tr>
@@ -59,13 +60,15 @@ Beyond its clean design, the application is built with a focus on secure routing
 </div>
 
 ## 📖 Table of Contents
-* [🛠️ Technologies & Styles Used 🎨](#️-technologies--styles-used-)
-* [✨ Core Features & Pages](#-core-features--pages)
-* [📂 Folder Structure](#-folder-structure)
-* [🚀 Installation Instructions](#-installation-instructions)
-* [💻 How to run the development server](#-how-to-run-the-development-server)
-* [🤝 How to Contribute](#-how-to-contribute)
-* [✍️ Author](#️-author)
+
+- [🛠️ Technologies & Styles Used 🎨](#️-technologies--styles-used-)
+- [✨ Features](#-features)
+- [🗺️ Application Pages](#️-application-pages)
+- [📂 Folder Structure](#-folder-structure)
+- [🚀 Installation Instructions](#-installation-instructions)
+- [💻 How to run the development server](#-how-to-run-the-development-server)
+- [🤝 How to Contribute](#-how-to-contribute)
+- [✍️ Author](#️-author)
 
 ---
 
@@ -79,18 +82,29 @@ Beyond its clean design, the application is built with a focus on secure routing
 
 ---
 
-## ✨ Core Features & Pages
+## ✨ Core Features
+
+- **Task Management:** Task management capabilities (Add, edit, and mark tasks as complete)
+- **Advanced State:** Optimistic UI updates with smooth error handling.
+- **Smart Search:** Real-time search and filtering, optimized with debounce.
+- **Secure Access:** User authentication with protected routes.
+- **"Neon Ritual" Theme:** Custom dark mode featuring sleek glassmorphism.
+- **Fully Responsive:** Flawless experience across desktop, tablet, and mobile.
+- **Bento-Grid Dashboard:** Visual statistics to track your daily progress.
+- **Intuitive UI:** Dynamic loading states and smart empty screens.
+
+## 🗺️ Application Pages
 
 TaskRitual is split into several secure and public zones, providing a seamless user experience:
 
-* **Authentication (`/login`)**: A visually stunning login portal with dynamic loading states and secure token handling.
-* **Dashboard (`/todos`)**: The core workspace. Features liquid-smooth interactions for adding, completing, and updating tasks. Includes:
-  * **Precision Filtering:** Filter by status (Active, Completed, All) and search by text with debounce optimization.
-  * **Smart Empty States:** Dynamic visual feedback when no tasks match the current filter.
-* **User Statistics (`/profile`)**: A beautiful bento-grid dashboard summarizing the user's progress, showing total tasks, completion rates, and animated progress bars.
-* **Information & Error Handling**: 
-  * **About Page (`/about`)**: A marketing page explaining the architecture and capabilities.
-  * **404 Page (`*`)**: A custom-styled "Lost in the void" empty state for broken links.
+- **Authentication (`/login`)**: A visually stunning login portal with dynamic loading states and secure token handling.
+- **Dashboard (`/todos`)**: The core workspace. Features liquid-smooth interactions for adding, completing, and updating tasks. Includes:
+  - **Precision Filtering:** Filter by status (Active, Completed, All) and search by text with debounce optimization.
+  - **Smart Empty States:** Dynamic visual feedback when no tasks match the current filter.
+- **User Statistics (`/profile`)**: A beautiful bento-grid dashboard summarizing the user's progress, showing total tasks, completion rates, and animated progress bars.
+- **Information & Error Handling**:
+  - **About Page (`/about`)**: A marketing page explaining the architecture and capabilities.
+  - **404 Page (`*`)**: A custom-styled "Lost in the void" empty state for broken links.
 
 ---
 
@@ -117,12 +131,14 @@ src/
 ## 🚀 Installation Instructions
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/waleedtarbosh/todo-list.git
    cd todo-list
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -135,21 +151,24 @@ src/
 ## 💻 How to run the development server
 
 Start the Vite development server by running:
+
 ```bash
 npm run dev
 ```
+
 Then, open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
 ## 🤝 How to Contribute
 
-Contributions, issues, and feature requests are welcome! 
+Contributions, issues, and feature requests are welcome!
 Feel free to check the [issues page](https://github.com/waleedtarbosh/todo-list/issues).
 
 ---
 
 ## ✍️ Author
 
-**Waleed Tarbosh** - *Project Creator*
-* GitHub: [@waleedtarbosh](https://github.com/waleedtarbosh)
+**Waleed Tarbosh** - _Project Creator_
+
+- GitHub: [@waleedtarbosh](https://github.com/waleedtarbosh)
