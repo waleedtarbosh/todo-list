@@ -90,8 +90,6 @@ Experience the application live here: **[taskritual.vercel.app](https://taskritu
 - **Advanced State:** Optimistic UI updates with smooth error handling.
 - **Smart Search:** Real-time search and filtering, optimized with debounce.
 - **Secure Access:** User authentication with protected routes.
-- **Data Security:** Safe and sanitized user inputs using DOMPurify to prevent XSS attacks.
-- **Smart Validation:** Real-time character limits and error messages to ensure clean data.
 - **"Neon Ritual" Theme:** Custom dark mode featuring sleek glassmorphism.
 - **Fully Responsive:** Flawless experience across desktop, tablet, and mobile.
 - **Bento-Grid Dashboard:** Visual statistics to track your daily progress.
@@ -164,6 +162,25 @@ Then, open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
+## 🎨 Design Decisions
+
+The visual identity of this application revolves around a custom **Dark Neon Theme** integrated with glassmorphism elements. 
+* **Tailwind CSS:** Selected for its utility-first approach, allowing rapid UI prototyping and highly maintainable styling without leaving the markup.
+* **Color Palette:** A highly contrasted dark surface paired with vibrant primary accents creates a modern, focused "ritual" aesthetic that reduces eye strain while drawing attention to active tasks.
+* **Component Architecture:** Leveraging React Router v7 and secure routing, the UI is decoupled into modular components, ensuring a highly responsive and seamless single-page application experience across all devices.
+
+---
+
+## 🚀 Future Improvements
+
+While the application fulfills all core requirements, future iterations could include:
+* **Task Deletion:** Allowing users to easily delete and remove tasks.
+* **Drag and Drop Reordering:** Implementing `dnd-kit` to allow users to manually prioritize their tasks.
+* **Advanced Analytics:** A deeper dashboard featuring weekly completion trends and productivity charts.
+* **Dark/Light Mode Toggle:** Extending the Tailwind configuration to support a bright, high-contrast light theme alongside the current neon dark mode.
+
+---
+
 ## 🤝 How to Contribute
 
 Contributions, issues, and feature requests are welcome!
@@ -176,3 +193,9 @@ Feel free to check the [issues page](https://github.com/waleedtarbosh/todo-list/
 **Waleed Tarbosh** - _Project Creator_
 
 - GitHub: [@waleedtarbosh](https://github.com/waleedtarbosh)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

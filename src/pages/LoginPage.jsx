@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
+import DOMPurify from "dompurify";
 import neonBg from "../assets/neon-ritual-bg.png";
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +28,10 @@ export default function LoginPage() {
     setIsLoggingOn(true);
     setAuthError("");
 
-    const result = await login(email, password);
+    const cleanEmail = DOMPurify.sanitize(email);
+    const cleanPassword = DOMPurify.sanitize(password);
+
+    const result = await login(cleanEmail, cleanPassword);
 
     if (!result.success) {
       setAuthError(result.error);
@@ -102,11 +107,11 @@ export default function LoginPage() {
             )}
 
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {/*  (Email) Input */}
+              {/* Email Input */}
               <div className="animate-fade-up-delay-2">
                 <label
                   className="block text-sm font-medium text-gray-300 mb-2 tracking-wider font-body"
-                  htmlFor="Email"
+                  htmlFor="email"
                 >
                   Email
                 </label>
@@ -134,12 +139,13 @@ export default function LoginPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    maxLength={50}
                     required
                   />
                 </div>
               </div>
 
-              {/* password (Password) Input */}
+              {/* Password Input */}
               <div className="animate-fade-up-delay-3">
                 <label
                   className="block text-sm font-medium text-gray-300 mb-2 tracking-wider font-body"
@@ -171,6 +177,7 @@ export default function LoginPage() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    maxLength={30}
                     required
                   />
                 </div>
