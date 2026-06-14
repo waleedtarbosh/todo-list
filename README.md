@@ -20,7 +20,9 @@ Beyond its clean design, the application is built with a focus on secure routing
 
 ## 🌐 Live Demo ⚡
 
-_(Coming soon)_
+[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://taskritual.vercel.app)
+
+Experience the application live here: **[taskritual.vercel.app](https://taskritual.vercel.app)**
 
 ## 📸 Screenshots 🖼️
 
