@@ -88,6 +88,8 @@ _(Coming soon)_
 - **Advanced State:** Optimistic UI updates with smooth error handling.
 - **Smart Search:** Real-time search and filtering, optimized with debounce.
 - **Secure Access:** User authentication with protected routes.
+- **Data Security:** Safe and sanitized user inputs using DOMPurify to prevent XSS attacks.
+- **Smart Validation:** Real-time character limits and error messages to ensure clean data.
 - **"Neon Ritual" Theme:** Custom dark mode featuring sleek glassmorphism.
 - **Fully Responsive:** Flawless experience across desktop, tablet, and mobile.
 - **Bento-Grid Dashboard:** Visual statistics to track your daily progress.
