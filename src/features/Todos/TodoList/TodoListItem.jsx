@@ -78,6 +78,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               value={workingTitle}
               onChange={handleTitleChange}
               autoComplete="off"
+              maxLength={MAX_LENGTH}
               className="w-full bg-transparent border border-primary/50 rounded-md px-4 py-2 font-display text-[18px] md:text-[24px] leading-normal font-semibold focus:border-primary focus:shadow-[inset_0_0_10px_rgba(255,45,85,0.2)] transition-all [&:-webkit-autofill]:bg-transparent [&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:transition-colors [&:-webkit-autofill]:duration-[50000s]"
               autoFocus
             />

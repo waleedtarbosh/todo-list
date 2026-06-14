@@ -70,6 +70,7 @@ function TodoForm({ onAddTodo }) {
           onChange={handleChange}
           placeholder="Initiate new ritual..."
           autoComplete="off"
+          maxLength={MAX_LENGTH}
           className="py-3 pr-24 w-full bg-transparent text-white placeholder:text-surface-variant/70 border-none outline-none focus:ring-0 shadow-none [&:-webkit-autofill]:bg-transparent [&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:transition-colors [&:-webkit-autofill]:duration-[50000s]"
         />
 
