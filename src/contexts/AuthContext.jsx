@@ -46,7 +46,9 @@ export function AuthProvider({ children }) {
         };
       }
     } catch (error) {
-      console.error("Login error:", error);
+      if (import.meta.env.DEV) {
+        console.error("Login error:", error);
+      }
       return {
         success: false,
         error: "Network error during login",
@@ -67,7 +69,9 @@ export function AuthProvider({ children }) {
         };
         await fetch("/api/users/logoff", options);
       } catch (error) {
-        console.error("Logout error:", error);
+        if (import.meta.env.DEV) {
+          console.error("Logout error:", error);
+        }
       }
     }
 

@@ -67,7 +67,7 @@ function TodoList({
                 onUpdateTodo={onUpdateTodo}
               />
               {index < filteredTodoList.todos.length - 1 && (
-                <div className="list-divider my-2 opacity-50" />
+                <li className="list-divider my-2 opacity-50" role="separator" />
               )}
             </React.Fragment>
           ))}
