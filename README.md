@@ -90,6 +90,7 @@ Experience the application live here: **[taskritual.vercel.app](https://taskritu
 - **Advanced State:** Optimistic UI updates with smooth error handling.
 - **Smart Search:** Real-time search and filtering, optimized with debounce.
 - **Secure Access:** User authentication with protected routes.
+- **Strong Security:** Safely handles user inputs and blocks malicious text using DOMPurify.
 - **"Neon Ritual" Theme:** Custom dark mode featuring sleek glassmorphism.
 - **Fully Responsive:** Flawless experience across desktop, tablet, and mobile.
 - **Bento-Grid Dashboard:** Visual statistics to track your daily progress.
