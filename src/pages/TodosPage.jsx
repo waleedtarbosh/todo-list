@@ -32,6 +32,8 @@ export default function TodosPage() {
     dispatch({ type: TODO_ACTIONS.SET_FILTER, payload: { filterTerm: newTerm } });
   };
 
+  const API_BASE = import.meta.env.VITE_TARGET || "";
+
   // Count active todos
   const activeTodoCount = useMemo(
     () => todoList.filter((t) => !t.isCompleted).length,
@@ -55,7 +57,8 @@ export default function TodosPage() {
         }
 
         const params = new URLSearchParams(paramsObject);
-        const response = await fetch(`/api/tasks?${params}`, {
+        
+        const response = await fetch(`${API_BASE}/api/tasks?${params}`, {
           method: "GET",
           headers: {
             "X-CSRF-TOKEN": token,
@@ -82,7 +85,7 @@ export default function TodosPage() {
     }
 
     fetchTodos();
-  }, [token, sortBy, sortDirection, debouncedFilterTerm]);
+  }, [token, sortBy, sortDirection, debouncedFilterTerm, API_BASE]);
 
   async function addTodo(todoTitle) {
     const tempTodo = {
@@ -94,7 +97,7 @@ export default function TodosPage() {
     dispatch({ type: TODO_ACTIONS.ADD_TODO_START, payload: { tempTodo } });
 
     try {
-      const response = await fetch("/api/tasks", {
+      const response = await fetch(`${API_BASE}/api/tasks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,7 +128,7 @@ export default function TodosPage() {
     dispatch({ type: TODO_ACTIONS.COMPLETE_TODO_START, payload: { id } });
 
     try {
-      const response = await fetch(`/api/tasks/${id}`, {
+      const response = await fetch(`${API_BASE}/api/tasks/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -155,7 +158,7 @@ export default function TodosPage() {
     dispatch({ type: TODO_ACTIONS.UPDATE_TODO_START, payload: { editedTodo } });
 
     try {
-      const response = await fetch(`/api/tasks/${editedTodo.id}`, {
+      const response = await fetch(`${API_BASE}/api/tasks/${editedTodo.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

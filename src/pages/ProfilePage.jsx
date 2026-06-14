@@ -21,6 +21,8 @@ export default function ProfilePage() {
     return 'Getting Started';
   }, [completionRate]);
 
+  const API_BASE = import.meta.env.VITE_TARGET || "";
+
   useEffect(() => {
     if (!token) return;
 
@@ -29,7 +31,7 @@ export default function ProfilePage() {
         setIsLoading(true);
         setError('');
 
-        const response = await fetch('/api/tasks', {
+        const response = await fetch(`${API_BASE}/api/tasks`, {
           method: 'GET',
           headers: {
             'X-CSRF-TOKEN': token,
@@ -57,8 +59,7 @@ export default function ProfilePage() {
     }
 
     fetchStats();
-  }, [token]);
-
+  }, [token, API_BASE]);
   return (
     <div className="bg-background text-on-surface font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden">
       {/* Ambient Glow */}
