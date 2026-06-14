@@ -238,6 +238,21 @@ export default function LoginPage() {
               {/* Divider + Recovery Link */}
               <div className="pt-6 text-center">
                 <div className="divider-neon mb-6" />
+
+                <div className="mb-4">
+                  <p className="text-sm text-gray-400 font-body mb-1">
+                    Don't have an account?
+                  </p>
+                  <a
+                    href="https://react-todo-list-v4-snowy.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-bold text-neon-red hover:text-red-400 transition-colors duration-200 font-body"
+                  >
+                    Register here
+                  </a>
+                </div>
+
                 <a
                   className="text-sm font-medium text-neon-red hover:text-red-400 transition-colors duration-200 font-body"
                   href="#"
