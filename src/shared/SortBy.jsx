@@ -5,30 +5,40 @@ export default function SortBy({
   onSortDirectionChange,
 }) {
   return (
-    <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
-      <div>
-        <label htmlFor="sortBy" style={{ marginRight: '5px' }}>Sort by:</label>
+    <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
+        <label
+          htmlFor="sortBy"
+          className="text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-on-surface-variant uppercase"
+        >
+          Sort
+        </label>
         <select
           id="sortBy"
           value={sortBy}
           onChange={(e) => onSortByChange(e.target.value)}
-          style={{ padding: '5px' }}
+          className="bg-surface-container border border-outline-variant/50 text-on-surface text-[14px] rounded-md px-3 py-1.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors cursor-pointer"
         >
-          <option value="creationDate">Creation Date</option>
+          <option value="creationDate">Date</option>
           <option value="title">Title</option>
         </select>
       </div>
 
-      <div>
-        <label htmlFor="sortDirection" style={{ marginRight: '5px' }}>Order:</label>
+      <div className="flex items-center gap-2">
+        <label
+          htmlFor="sortDirection"
+          className="text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-on-surface-variant uppercase"
+        >
+          Order
+        </label>
         <select
           id="sortDirection"
           value={sortDirection}
           onChange={(e) => onSortDirectionChange(e.target.value)}
-          style={{ padding: '5px' }}
+          className="bg-surface-container border border-outline-variant/50 text-on-surface text-[14px] rounded-md px-3 py-1.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors cursor-pointer"
         >
-          <option value="desc">Descending</option>
-          <option value="asc">Ascending</option>
+          <option value="desc">Desc</option>
+          <option value="asc">Asc</option>
         </select>
       </div>
     </div>
