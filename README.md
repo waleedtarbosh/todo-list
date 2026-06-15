@@ -24,12 +24,13 @@ Beyond its clean design, the application is built with a focus on secure routing
 
 Experience the application live here: **[taskritual.vercel.app](https://taskritual.vercel.app)**
 
-## 📸 Screenshots 🖼️
-
+## 🎥 Application Demo
 <div align="center">
-  <video src="./src/assets/all-screen.mp4" width="100%" controls></video>
+  <video src="https://github.com/user-attachments/assets/a5b174f2-050c-47ce-8960-59f8e3348371" width="100%" autoplay loop muted controls></video>
 </div>
 
+
+## 📸 Screenshots 🖼️
 <div align="center">
   <table>
     <tr>
