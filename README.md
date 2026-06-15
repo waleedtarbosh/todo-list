@@ -27,9 +27,7 @@ Experience the application live here: **[taskritual.vercel.app](https://taskritu
 ## 📸 Screenshots 🖼️
 
 <div align="center">
-  <video width="100%" autoplay loop muted controls>
-    <source src="./src/assets/all-screen%20.mp4" type="video/mp4" />
-  </video>
+  <video src="./src/assets/all-screen.mp4" width="100%" controls></video>
 </div>
 
 <div align="center">
