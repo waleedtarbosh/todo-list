@@ -4,7 +4,7 @@ import TextInputWithLabel from '../../../shared/TextInputWithLabel';
 import { isValidTodoTitle } from '../todoValidation';
 import { useEditableTitle } from '../../../hooks/useEditableTitle';
 
-function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
+function TodoListItem({ todo, onCompleteTodo, onDeleteTodo, onUpdateTodo }) {
   const [error, setError] = useState("");
   
   const {
@@ -121,15 +121,15 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
       <div className="flex items-center gap-4">
         {/* toggle */}
         <button
-          onClick={() => !todo.isCompleted && onCompleteTodo(todo.id)}
-          className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors shrink-0 ${
+          onClick={() => onCompleteTodo(todo.id)}
+          className={`w-11 h-11 rounded-full border-2 flex items-center justify-center transition-colors shrink-0 ${
             todo.isCompleted
-              ? 'border-primary bg-primary/20 cursor-default'
+              ? 'border-primary bg-primary/20 cursor-pointer hover:border-outline-variant hover:bg-transparent'
               : 'border-outline-variant hover:border-primary hover:bg-primary/20'
           }`}
         >
           <span
-            className={`material-symbols-outlined text-[16px] text-primary transition-opacity ${
+            className={`material-symbols-outlined text-[20px] text-primary transition-opacity ${
               todo.isCompleted
                 ? 'opacity-100 neon-icon-glow'
                 : 'opacity-0 group-hover:opacity-100'
@@ -155,18 +155,28 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
       </div>
 
       {/* Actions */}
-      {!todo.isCompleted && (
-        <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1 shrink-0">
+        {!todo.isCompleted && (
           <button
             onClick={startEditing}
             className="text-outline-variant hover:text-primary transition-colors p-2"
+            title="Edit task"
           >
             <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
               edit
             </span>
           </button>
-        </div>
-      )}
+        )}
+        <button
+          onClick={() => onDeleteTodo(todo.id)}
+          className="text-outline-variant hover:text-error transition-colors p-2"
+          title="Delete task"
+        >
+          <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
+            delete
+          </span>
+        </button>
+      </div>
     </li>
   );
 }
