@@ -159,26 +159,39 @@ Start the Vite development server by running:
 npm run dev
 ```
 
-Then, open [http://localhost:5173](http://localhost:5173) in your browser.
+Then, open [http://localhost:3001](http://localhost:3001) in your browser.
+
+---
+
+## 📜 Available Scripts
+
+| Script      | Command           | Description                                                                        |
+| ----------- | ----------------- | ---------------------------------------------------------------------------------- |
+| **Dev**     | `npm run dev`     | Starts the Vite development server with hot module replacement on `localhost:3001` |
+| **Build**   | `npm run build`   | Creates an optimized production build in the `dist/` directory                     |
+| **Preview** | `npm run preview` | Serves the production build locally for testing before deployment                  |
+| **Lint**    | `npm run lint`    | Runs ESLint to check for code quality issues and potential errors                  |
 
 ---
 
 ## 🎨 Design Decisions
 
-The visual identity of this application revolves around a custom **Dark Neon Theme** integrated with glassmorphism elements. 
-* **Tailwind CSS:** Selected for its utility-first approach, allowing rapid UI prototyping and highly maintainable styling without leaving the markup.
-* **Color Palette:** A highly contrasted dark surface paired with vibrant primary accents creates a modern, focused "ritual" aesthetic that reduces eye strain while drawing attention to active tasks.
-* **Component Architecture:** Leveraging React Router v7 and secure routing, the UI is decoupled into modular components, ensuring a highly responsive and seamless single-page application experience across all devices.
+The visual identity of this application revolves around a custom **Dark Neon Theme** integrated with glassmorphism elements.
+
+- **Tailwind CSS:** Selected for its utility-first approach, allowing rapid UI prototyping and highly maintainable styling without leaving the markup.
+- **Color Palette:** A highly contrasted dark surface paired with vibrant primary accents creates a modern, focused "ritual" aesthetic that reduces eye strain while drawing attention to active tasks.
+- **Component Architecture:** Leveraging React Router v7 and secure routing, the UI is decoupled into modular components, ensuring a highly responsive and seamless single-page application experience across all devices.
 
 ---
 
 ## 🚀 Future Improvements
 
 While the application fulfills all core requirements, future iterations could include:
-* **Task Deletion:** Allowing users to easily delete and remove tasks.
-* **Drag and Drop Reordering:** Implementing `dnd-kit` to allow users to manually prioritize their tasks.
-* **Advanced Analytics:** A deeper dashboard featuring weekly completion trends and productivity charts.
-* **Dark/Light Mode Toggle:** Extending the Tailwind configuration to support a bright, high-contrast light theme alongside the current neon dark mode.
+
+- **Task Deletion:** Allowing users to easily delete and remove tasks.
+- **Drag and Drop Reordering:** Implementing `dnd-kit` to allow users to manually prioritize their tasks.
+- **Advanced Analytics:** A deeper dashboard featuring weekly completion trends and productivity charts.
+- **Dark/Light Mode Toggle:** Extending the Tailwind configuration to support a bright, high-contrast light theme alongside the current neon dark mode.
 
 ---
 
