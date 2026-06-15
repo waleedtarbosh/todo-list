@@ -136,18 +136,44 @@ export default function TodosPage() {
         },
         credentials: "include",
         body: JSON.stringify({
-          isCompleted: true,
+          isCompleted: !originalTodo.isCompleted,
           title: originalTodo.title,
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to mark task as completed");
+      if (!response.ok) throw new Error("Failed to update task status");
       
       dispatch({ type: TODO_ACTIONS.COMPLETE_TODO_SUCCESS });
     } catch (err) {
       dispatch({ 
         type: TODO_ACTIONS.COMPLETE_TODO_ERROR, 
         payload: { id, originalTodo, message: `Rollback: ${err.message}` } 
+      });
+    }
+  }
+
+  async function deleteTodo(id) {
+    const originalTodo = todoList.find((t) => t.id === id);
+    if (!originalTodo) return;
+
+    dispatch({ type: TODO_ACTIONS.DELETE_TODO_START, payload: { id } });
+
+    try {
+      const response = await fetch(`${API_BASE}/api/tasks/${id}`, {
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": token,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Failed to delete task");
+      
+      dispatch({ type: TODO_ACTIONS.DELETE_TODO_SUCCESS });
+    } catch (err) {
+      dispatch({ 
+        type: TODO_ACTIONS.DELETE_TODO_ERROR, 
+        payload: { originalTodo, message: `Rollback: ${err.message}` } 
       });
     }
   }
@@ -284,6 +310,7 @@ export default function TodosPage() {
               <TodoList
                 todoList={todoList}
                 onCompleteTodo={completeTodo}
+                onDeleteTodo={deleteTodo}
                 onUpdateTodo={updateTodo}
                 dataVersion={dataVersion}
                 statusFilter={statusFilter}
