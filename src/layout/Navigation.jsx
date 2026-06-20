@@ -36,6 +36,7 @@ export default function Navigation({ mobile = false, onNavigate }) {
 
   return (
     <nav
+      aria-label={mobile ? 'Mobile navigation' : 'Main navigation'}
       className={
         mobile
           ? 'flex flex-col gap-1'

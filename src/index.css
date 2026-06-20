@@ -280,6 +280,7 @@ body {
 /* ===== Focus Visible (Keyboard Accessibility) ===== */
 button:focus-visible,
 a:focus-visible,
+input:focus-visible,
 select:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;

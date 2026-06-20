@@ -101,8 +101,8 @@ export default function ProfilePage() {
 
         {/* Loading State */}
         {isLoading && (
-          <div className="flex items-center justify-center py-24 gap-3">
-            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <div className="flex items-center justify-center py-24 gap-3" role="status" aria-live="polite">
+            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" aria-hidden="true" />
             <span className="text-[14px] tracking-[0.05em] font-semibold text-primary uppercase">
               Loading statistics...
             </span>
@@ -111,7 +111,7 @@ export default function ProfilePage() {
 
         {/* Error State */}
         {error && (
-          <div className="glass-panel rounded-lg p-4 flex items-center gap-3 animate-fade-up">
+          <div role="alert" className="glass-panel rounded-lg p-4 flex items-center gap-3 animate-fade-up">
             <span
               className="material-symbols-outlined text-error"
               style={{ fontSize: '20px' }}
