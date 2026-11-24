@@ -84,7 +84,7 @@ function TodoForm({ onAddTodo }) {
       </form>
 
       {error && (
-        <div className="text-red-500 text-[13px] font-medium animate-fade-up pl-2 tracking-wide">
+        <div role="alert" className="text-red-500 text-[13px] font-medium animate-fade-up pl-2 tracking-wide">
           ⚠️ {error}
         </div>
       )}

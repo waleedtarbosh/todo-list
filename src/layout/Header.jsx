@@ -43,6 +43,7 @@ export default function Header() {
             className="md:hidden text-primary p-2 z-50"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
           >
             <span
               className="material-symbols-outlined"

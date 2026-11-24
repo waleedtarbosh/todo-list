@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import DOMPurify from 'dompurify';
-import TextInputWithLabel from '../../../shared/TextInputWithLabel';
-import { isValidTodoTitle } from '../todoValidation';
-import { useEditableTitle } from '../../../hooks/useEditableTitle';
+import { useState } from "react";
+import DOMPurify from "dompurify";
+import TextInputWithLabel from "../../../shared/TextInputWithLabel";
+import { isValidTodoTitle } from "../todoValidation";
+import { useEditableTitle } from "../../../hooks/useEditableTitle";
 
-function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
+function TodoListItem({ todo, onCompleteTodo, onDeleteTodo, onUpdateTodo }) {
   const [error, setError] = useState("");
-  
+
   const {
     isEditing,
     workingTitle,
     startEditing,
     cancelEdit,
     updateTitle,
-    finishEdit
+    finishEdit,
   } = useEditableTitle(todo.title);
 
   const MAX_LENGTH = 100;
@@ -33,7 +33,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const handleUpdate = (event) => {
     if (!isEditing) return;
     event.preventDefault();
-    
+
     const trimmedTitle = workingTitle.trim();
 
     // Validation: Empty Check
@@ -70,7 +70,6 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     return (
       <li className="task-card rounded-lg p-4 md:p-6 bg-surface-container-lowest/60 block">
         <form onSubmit={handleUpdate} className="flex flex-col gap-4 w-full">
-          
           <div className="w-full flex flex-col gap-2">
             <TextInputWithLabel
               elementId={`editTodo${todo.id}`}
@@ -84,7 +83,10 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
             />
             {/* Validation Message */}
             {error && (
-              <div className="text-red-500 text-[12px] md:text-[13px] font-medium animate-fade-up pl-2 tracking-wide w-full text-left">
+              <div
+                role="alert"
+                className="text-red-500 text-[12px] md:text-[13px] font-medium animate-fade-up pl-2 tracking-wide w-full text-left"
+              >
                 ⚠️ {error}
               </div>
             )}
@@ -101,7 +103,10 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
             <button
               type="button"
               onClick={handleUpdate}
-              disabled={!isValidTodoTitle(workingTitle) || workingTitle.trim().length > MAX_LENGTH}
+              disabled={
+                !isValidTodoTitle(workingTitle) ||
+                workingTitle.trim().length > MAX_LENGTH
+              }
               className="bg-primary/20 border border-primary text-primary text-[12px] md:text-[14px] tracking-[0.05em] font-semibold uppercase px-4 py-2 rounded-md hover:bg-primary/30 transition-all disabled:bg-gray-800 disabled:text-gray-500 disabled:border-gray-700 disabled:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
             >
               Update
@@ -115,25 +120,31 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   return (
     <li
       className={`task-card rounded-lg p-6 flex items-center justify-between group bg-surface-container-lowest/60 ${
-        todo.isCompleted ? 'opacity-50' : ''
+        todo.isCompleted ? "opacity-50" : ""
       }`}
     >
       <div className="flex items-center gap-4">
         {/* toggle */}
         <button
-          onClick={() => !todo.isCompleted && onCompleteTodo(todo.id)}
-          className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors shrink-0 ${
+          onClick={() => onCompleteTodo(todo.id)}
+          aria-label={
             todo.isCompleted
-              ? 'border-primary bg-primary/20 cursor-default'
-              : 'border-outline-variant hover:border-primary hover:bg-primary/20'
+              ? `Mark "${todo.title}" as incomplete`
+              : `Mark "${todo.title}" as complete`
+          }
+          className={`w-11 h-11 rounded-full border-2 flex items-center justify-center transition-colors shrink-0 ${
+            todo.isCompleted
+              ? "border-primary bg-primary/20 cursor-pointer hover:border-outline-variant hover:bg-transparent"
+              : "border-outline-variant hover:border-primary hover:bg-primary/20"
           }`}
         >
           <span
-            className={`material-symbols-outlined text-[16px] text-primary transition-opacity ${
+            className={`material-symbols-outlined text-[20px] text-primary transition-opacity ${
               todo.isCompleted
-                ? 'opacity-100 neon-icon-glow'
-                : 'opacity-0 group-hover:opacity-100'
+                ? "opacity-100 neon-icon-glow"
+                : "opacity-0 group-hover:opacity-100"
             }`}
+            aria-hidden="true"
           >
             check
           </span>
@@ -143,10 +154,22 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
         <div className="flex flex-col">
           <span
             onClick={!todo.isCompleted ? startEditing : undefined}
+            onKeyDown={
+              !todo.isCompleted
+                ? (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      startEditing();
+                    }
+                  }
+                : undefined
+            }
+            role={!todo.isCompleted ? "button" : undefined}
+            tabIndex={!todo.isCompleted ? 0 : undefined}
             className={`font-display text-[18px] md:text-[24px] leading-normal font-semibold transition-colors cursor-pointer ${
               todo.isCompleted
-                ? 'text-on-surface-variant line-through cursor-default'
-                : 'text-on-surface group-hover:text-primary'
+                ? "text-on-surface-variant line-through cursor-default"
+                : "text-on-surface group-hover:text-primary"
             }`}
           >
             {todo.title}
@@ -155,18 +178,38 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
       </div>
 
       {/* Actions */}
-      {!todo.isCompleted && (
-        <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1 shrink-0">
+        {!todo.isCompleted && (
           <button
             onClick={startEditing}
             className="text-outline-variant hover:text-primary transition-colors p-2"
+            aria-label={`Edit "${todo.title}"`}
+            title="Edit task"
           >
-            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>
+            <span
+              className="material-symbols-outlined"
+              style={{ fontSize: "20px" }}
+              aria-hidden="true"
+            >
               edit
             </span>
           </button>
-        </div>
-      )}
+        )}
+        <button
+          onClick={() => onDeleteTodo(todo.id)}
+          className="text-outline-variant hover:text-error transition-colors p-2"
+          aria-label={`Delete "${todo.title}"`}
+          title="Delete task"
+        >
+          <span
+            className="material-symbols-outlined"
+            style={{ fontSize: "20px" }}
+            aria-hidden="true"
+          >
+            delete
+          </span>
+        </button>
+      </div>
     </li>
   );
 }

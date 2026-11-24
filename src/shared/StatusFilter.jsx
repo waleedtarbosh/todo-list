@@ -25,11 +25,12 @@ export default function StatusFilter() {
       <span className="text-[14px] leading-[20px] tracking-[0.05em] font-semibold text-on-surface-variant uppercase">
         Show
       </span>
-      <div className="flex rounded-md overflow-hidden border border-outline-variant/50">
+      <div className="flex rounded-md overflow-hidden border border-outline-variant/50" role="group" aria-label="Filter tasks by status">
         {statuses.map((s) => (
           <button
             key={s.value}
             onClick={() => handleStatusChange(s.value)}
+            aria-pressed={currentStatus === s.value}
             className={`px-3 py-1.5 text-[14px] tracking-[0.05em] font-semibold uppercase transition-all duration-200 ${
               currentStatus === s.value
                 ? 'bg-primary/20 text-primary border-primary'

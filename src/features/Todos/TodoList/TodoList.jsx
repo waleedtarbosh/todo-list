@@ -4,6 +4,7 @@ import TodoListItem from './TodoListItem';
 function TodoList({ 
   todoList, 
   onCompleteTodo, 
+  onDeleteTodo,
   onUpdateTodo, 
   dataVersion,
   statusFilter = 'active'
@@ -64,6 +65,7 @@ function TodoList({
               <TodoListItem
                 todo={todo}
                 onCompleteTodo={onCompleteTodo}
+                onDeleteTodo={onDeleteTodo}
                 onUpdateTodo={onUpdateTodo}
               />
               {index < filteredTodoList.todos.length - 1 && (

@@ -136,18 +136,44 @@ export default function TodosPage() {
         },
         credentials: "include",
         body: JSON.stringify({
-          isCompleted: true,
+          isCompleted: !originalTodo.isCompleted,
           title: originalTodo.title,
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to mark task as completed");
+      if (!response.ok) throw new Error("Failed to update task status");
       
       dispatch({ type: TODO_ACTIONS.COMPLETE_TODO_SUCCESS });
     } catch (err) {
       dispatch({ 
         type: TODO_ACTIONS.COMPLETE_TODO_ERROR, 
         payload: { id, originalTodo, message: `Rollback: ${err.message}` } 
+      });
+    }
+  }
+
+  async function deleteTodo(id) {
+    const originalTodo = todoList.find((t) => t.id === id);
+    if (!originalTodo) return;
+
+    dispatch({ type: TODO_ACTIONS.DELETE_TODO_START, payload: { id } });
+
+    try {
+      const response = await fetch(`${API_BASE}/api/tasks/${id}`, {
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": token,
+        },
+        credentials: "include",
+      });
+
+      if (!response.ok) throw new Error("Failed to delete task");
+      
+      dispatch({ type: TODO_ACTIONS.DELETE_TODO_SUCCESS });
+    } catch (err) {
+      dispatch({ 
+        type: TODO_ACTIONS.DELETE_TODO_ERROR, 
+        payload: { originalTodo, message: `Rollback: ${err.message}` } 
       });
     }
   }
@@ -205,9 +231,9 @@ export default function TodosPage() {
 
           {/* Error Messages */}
           {error && (
-            <div className="glass-panel rounded-lg p-4 border-error/50 flex items-center justify-between animate-fade-up">
+            <div role="alert" className="glass-panel rounded-lg p-4 border-error/50 flex items-center justify-between animate-fade-up">
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-error" style={{ fontSize: '20px' }}>error</span>
+                <span className="material-symbols-outlined text-error" style={{ fontSize: '20px' }} aria-hidden="true">error</span>
                 <span className="text-error text-[14px]">{error}</span>
               </div>
               <button
@@ -220,9 +246,9 @@ export default function TodosPage() {
           )}
 
           {filterError && (
-            <div className="glass-panel rounded-lg p-4 border-orange-500/50 flex items-center justify-between animate-fade-up">
+            <div role="alert" className="glass-panel rounded-lg p-4 border-orange-500/50 flex items-center justify-between animate-fade-up">
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-orange-400" style={{ fontSize: '20px' }}>warning</span>
+                <span className="material-symbols-outlined text-orange-400" style={{ fontSize: '20px' }} aria-hidden="true">warning</span>
                 <span className="text-orange-400 text-[14px]">{filterError}</span>
               </div>
               <div className="flex gap-3">
@@ -270,8 +296,8 @@ export default function TodosPage() {
 
           {/* Loading State */}
           {isTodoListLoading && (
-            <div className="flex items-center justify-center py-12 gap-3">
-              <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+            <div className="flex items-center justify-center py-12 gap-3" role="status" aria-live="polite">
+              <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" aria-hidden="true" />
               <span className="text-[14px] tracking-[0.05em] font-semibold text-primary uppercase">
                 Loading rituals...
               </span>
@@ -284,6 +310,7 @@ export default function TodosPage() {
               <TodoList
                 todoList={todoList}
                 onCompleteTodo={completeTodo}
+                onDeleteTodo={deleteTodo}
                 onUpdateTodo={updateTodo}
                 dataVersion={dataVersion}
                 statusFilter={statusFilter}
